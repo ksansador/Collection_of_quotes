@@ -3,6 +3,7 @@ import {CATEGORY} from "../../constans";
 import Button from "../../components/UI/Button/Button";
 import axiosApi from "../../axiosApi";
 import './AddPAge.css';
+import Spinner from "../../components/UI/Spinner/Spinner";
 
 const AddPage = ({history,match}) => {
     const [quote, setQuote] = useState({
@@ -10,6 +11,7 @@ const AddPage = ({history,match}) => {
        category: 'star-wars',
        text: '',
    });
+
    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -23,13 +25,12 @@ const AddPage = ({history,match}) => {
                     setQuote(value);
                 }
             };
-            setLoading(false);
             fetchData().catch(console.error);
         } catch (e) {
             console.error(e);
         }
+        setLoading(false);
     }, []);
-
 
    const onSubmitHandler = async e => {
         e.preventDefault();
@@ -79,6 +80,7 @@ const AddPage = ({history,match}) => {
 
    let form = (
      <form onSubmit={onSubmitHandler}  className={'submitForm'}>
+         <label className={'label'}><small>Choose category:</small></label>
          <select
              name={'category'}
              onChange={onInputChange}
@@ -92,15 +94,17 @@ const AddPage = ({history,match}) => {
              })}
          </select>
 
+        <label className={'label'}><small>Author's name:</small></label>
          <input
              type={'text'}
              className={'InputAdd'}
              name={'author'}
              value={quote.author}
              onChange={onInputChange}
-             placeholder={'Your name'}
+             placeholder={'Author'}
          />
 
+         <label className={'label'}><small>Quote:</small></label>
          <textarea
              className={'InputAdd'}
              name={'text'}
@@ -112,8 +116,22 @@ const AddPage = ({history,match}) => {
          <Button type={'submit'} btnType={'Submit'}>Submit post</Button>
      </form>
    );
+
+   if(loading) {
+       form = <Spinner/>;
+   }
+
+    let text = 'Submit new quotes';
+
+    if  (match.params.id) {
+        text = 'Edit quote';
+    }
+
+
     return (
+
         <div>
+            <h3 className={'FormTitle'}>{text}</h3>
             {form}
         </div>
     );

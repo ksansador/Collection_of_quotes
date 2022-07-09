@@ -1,18 +1,30 @@
 .CategoriesList {
- margin: 20px auto;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .CategoryItem {
-  margin-bottom: 10px;
+    max-width: 280px;
+    margin-bottom: 10px;
 }
 
 .CategoryLink {
- color: #2d414f;
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #516463;
+    border-radius: 10px;
+    width: 100%;
+    text-decoration: none;
+    color: #2d414f;
     font-size: 15px;
- text-transform: uppercase;
+    text-transform: uppercase;
     font-weight: bolder;
 }
 
-.CategoryLink:focus{
- color: #2c8d85;
+.CategoryLink:focus,
+.CategoryLink:active
+{
+    color: white;
+    background: #516463;
 }

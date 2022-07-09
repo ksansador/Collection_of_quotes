@@ -1,7 +1,7 @@
 .submitForm {
     display: flex;
     flex-direction: column;
-    margin: 50px auto;
+    margin: 10px auto;
     width: 80%;
     align-items: flex-start;
     border: 1px solid #516463;
@@ -26,4 +26,15 @@
 }
 textarea  {
     min-height: 80px;
+}
+.label{
+    color: #516463;
+    font-size: smaller;
+    margin-bottom: 5px;
+}
+.FormTitle{
+    color: #2d414f;
+    text-align: center;
+    margin-top: 80px;
+    text-transform: uppercase;
 }
