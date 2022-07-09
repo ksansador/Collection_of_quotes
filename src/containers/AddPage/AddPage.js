@@ -30,7 +30,7 @@ const AddPage = ({history,match}) => {
             console.error(e);
         }
         setLoading(false);
-    }, []);
+    }, [match.params.id]);
 
    const onSubmitHandler = async e => {
         e.preventDefault();
