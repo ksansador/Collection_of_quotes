@@ -2,9 +2,8 @@ import React, {useState} from 'react';
 import {NavLink} from "react-router-dom";
 import {CATEGORY} from "../../constans";
 
-const HomePage = ({history}) => {
-
-    const [categories, setCategories] = useState(CATEGORY);
+const Categories = () => {
+    const [categories] = useState(CATEGORY);
 
     return (
         <div>
@@ -26,4 +25,4 @@ const HomePage = ({history}) => {
     );
 };
 
-export default HomePage;
+export default Categories;

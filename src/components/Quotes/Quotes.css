@@ -1,0 +1,12 @@
+.mainBlock{
+    display: flex;
+}
+.Categories{
+    width: 30%;
+    max-height: 100vh;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+}
+.Quotes{
+    width: 70%;
+}

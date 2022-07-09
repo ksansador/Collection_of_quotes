@@ -10,7 +10,7 @@ const Header = () => {
 
                 <ul className={'navList'}>
                     <li className={'navItem'}>
-                        <NavLink to='/' exact  className={'navLink'}>Quotes</NavLink>
+                        <NavLink to='/'   className={'navLink'}>Quotes</NavLink>
                     </li>
                     <li className={'navItem'}>
                         <NavLink to='/add' className={'navLink'}>Submit new quote</NavLink>

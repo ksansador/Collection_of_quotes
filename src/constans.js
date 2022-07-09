@@ -5,4 +5,3 @@ export const CATEGORY = [
     {title: 'Famous People', id: 'famous-people'},
     {title: 'Parents', id: 'parents'},
 ];
-
