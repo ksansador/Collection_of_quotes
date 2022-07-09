@@ -6,11 +6,11 @@ const Header = () => {
     return (
         <header>
             <nav className={'mainNav'}>
-                <h1> <a className={'logo'} href={'https://t.me/ksansador'}>collection of quotes</a></h1>
+                <h1> <a className={'logo'} href={'https://www.forbes.ru/forbeslife/dosug/262327-na-vse-vremena-100-vdokhnovlyayushchikh-tsitat'}>collection of quotes</a></h1>
 
                 <ul className={'navList'}>
                     <li className={'navItem'}>
-                        <NavLink to='/'   className={'navLink'}>Quotes</NavLink>
+                        <NavLink to='/' exact className={'navLink'}>Quotes</NavLink>
                     </li>
                     <li className={'navItem'}>
                         <NavLink to='/add' className={'navLink'}>Submit new quote</NavLink>

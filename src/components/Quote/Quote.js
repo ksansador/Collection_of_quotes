@@ -5,10 +5,16 @@ import './Quote.css';
 const Quote = (props) => {
     return (
         <div className={'Quote'}>
-            <p className={'quoteBody'}>{props.text}</p>
-            <h3 className={'quoteTitle'}>---{props.title}</h3>
-            <Button btnType={'Btn'} clicked={props.onEdit}>Edit</Button>
-            <Button btnType={'Btn'} clicked={props.onDelete}>Delete</Button>
+            <div className={'btns'}>
+                <Button btnType={'MainButton'} clicked={props.onEdit}>Edit</Button>
+                <Button btnType={'MainButton'} clicked={props.onDelete}>Delete</Button>
+            </div>
+            <p className={'quoteBody'}>
+                &#10077;
+                    {props.text}
+                &#10078;
+            </p>
+            <h3 className={'quoteTitle'}>&mdash;  {props.title}  &mdash;</h3>
         </div>
     );
 };

@@ -1,0 +1,18 @@
+.CategoriesList {
+ margin: 20px auto;
+}
+
+.CategoryItem {
+  margin-bottom: 10px;
+}
+
+.CategoryLink {
+ color: #2d414f;
+    font-size: 15px;
+ text-transform: uppercase;
+    font-weight: bolder;
+}
+
+.CategoryLink:focus{
+ color: #2c8d85;
+}

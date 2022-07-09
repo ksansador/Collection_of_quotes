@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {CATEGORY} from "../../constans";
 import Button from "../../components/UI/Button/Button";
 import axiosApi from "../../axiosApi";
-import axios from "axios";
+import './AddPAge.css';
 
 const AddPage = ({history,match}) => {
     const [quote, setQuote] = useState({
@@ -15,6 +15,7 @@ const AddPage = ({history,match}) => {
     useEffect(() => {
         try {
             const fetchData = async() => {
+                setLoading(true);
                 const response =   await axiosApi(`/quotes/${match.params.id}.json`);
                 if(response.data !== null) {
                     const value = response.data;
@@ -22,7 +23,7 @@ const AddPage = ({history,match}) => {
                     setQuote(value);
                 }
             };
-
+            setLoading(false);
             fetchData().catch(console.error);
         } catch (e) {
             console.error(e);
@@ -38,7 +39,7 @@ const AddPage = ({history,match}) => {
 
              if (quote.author !== '' && quote.text !== '') {
                 try {
-                    await axios.post('https://exam-8-zanokha-default-rtdb.europe-west1.firebasedatabase.app/quotes.json', quote)
+                    await axiosApi.post('/quotes.json', quote)
                     history.replace('/');
                 } catch (e){
                     console.error(e);
@@ -77,8 +78,7 @@ const AddPage = ({history,match}) => {
     };
 
    let form = (
-     <form onSubmit={onSubmitHandler}  className={'submit'}>
-
+     <form onSubmit={onSubmitHandler}  className={'submitForm'}>
          <select
              name={'category'}
              onChange={onInputChange}
@@ -100,6 +100,7 @@ const AddPage = ({history,match}) => {
              onChange={onInputChange}
              placeholder={'Your name'}
          />
+
          <textarea
              className={'InputAdd'}
              name={'text'}
@@ -107,6 +108,7 @@ const AddPage = ({history,match}) => {
              value={quote.text}
              placeholder={'Write quote'}
          />
+
          <Button type={'submit'} btnType={'Submit'}>Submit post</Button>
      </form>
    );

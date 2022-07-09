@@ -1,4 +1,24 @@
 .Quote{
-    border: 1px solid #ccc;
-    margin: 20px 0;
+    border: 1px solid #516463;
+    margin: 0 0 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    background: rgba(130, 159, 158, 0.1);
+    color: #2d414f;
+}
+.btns{
+    align-self: flex-end;
+}
+.quoteBody{
+    margin-top: 30px;
+    font-size: 16px;
+    text-align: center;
+}
+.quoteTitle{
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: capitalize;
 }

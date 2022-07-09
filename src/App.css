@@ -1,21 +1,11 @@
 .App {
-  max-width: 1300px;
+  max-width: 1200px;
   margin: 0 auto;
+  background: white;
+  height: 100vh;
 }
 .clearfix::after {
   content: "";
   display: block;
   clear: both;
-}
-.mainBlock{
-  display: flex;
-}
-.Categories{
-  width: 30%;
-  max-height: 100vh;
-  overflow-y: auto;
-  border: 1px solid #ccc;
-}
-.Quotes{
-  width: 70%;
 }

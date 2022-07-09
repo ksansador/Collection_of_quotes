@@ -1,0 +1,29 @@
+.submitForm {
+    display: flex;
+    flex-direction: column;
+    margin: 50px auto;
+    width: 80%;
+    align-items: flex-start;
+    border: 1px solid #516463;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.selector,
+.InputAdd {
+    margin-bottom: 20px;
+    padding: 8px 15px;
+    color: #2d414f;
+    font-size: 14px;
+}
+.selector{
+    width: 50%;
+}
+
+.InputAdd{
+    width: 80%;
+    resize: none;
+}
+textarea  {
+    min-height: 80px;
+}

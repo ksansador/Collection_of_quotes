@@ -1,25 +1,28 @@
 import React, {useEffect, useState} from 'react';
 import axiosApi from "../../axiosApi";
-import Button from "../UI/Button/Button";
+import Button from "../../components/UI/Button/Button";
 import {useHistory} from "react-router-dom";
-import Spinner from "../UI/Spinner/Spinner";
-import Categories from "../Categories/Categories";
+import Spinner from "../../components/UI/Spinner/Spinner";
+import Categories from "../../components/Categories/Categories";
 import './Quotes.css'
-import Quote from "../Quote/Quote";
+import Quote from "../../components/Quote/Quote";
 
 const Quotes = ({match}) => {
-    console.log(match.params.category);
     const history = useHistory();
     const [quotes, setQuotes] = useState(null);
     const [loading, setLoading] = useState(false);
     let quotesArr = [];
 
     useEffect(() => {
-
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const response = await axiosApi('quotes.json');
+                let response = await axiosApi('quotes.json');
+
+                if(match.params.category !== undefined) {
+                    response = await axiosApi(`quotes.json?orderBy="category"&equalTo="${match.params.category}"`);
+                }
+
                 if (response.data !== null) {
                     for (const key of Object.entries(response.data)) {
                         quotesArr.push({
@@ -37,35 +40,6 @@ const Quotes = ({match}) => {
             setLoading(false);
         };
         fetchData().catch(e => console.log(e));
-    }, []);
-
-    useEffect(() => {
-
-        const fetchData = async () => {
-            try {
-                setLoading(true);
-                if ( match.params.category !== undefined) {
-                    const response = await axiosApi(`quotes.json?orderBy="category"&equalTo="${match.params.category}"`);
-                    console.log(response.data);
-
-                    for (const key of Object.entries(response.data)) {
-                        quotesArr.push({
-                            id: key[0],
-                            author: key[1].author,
-                            text: key[1].text,
-                            category: key[1].category,
-                        });
-                    }
-                    setQuotes(quotesArr);
-                }
-
-            } catch (e) {
-                console.error(e);
-            }
-            setLoading(false);
-        };
-        fetchData().catch(e => console.log(e));
-
     }, [match.params.category]);
 
     const toAddPage = () => {
@@ -77,7 +51,6 @@ const Quotes = ({match}) => {
     };
 
     const onDelete = async (id) => {
-        console.log(id);
         await axiosApi.delete(`/quotes/${id}.json`);
         setQuotes(quotes.filter(quote => quote.id !== id));
     };
@@ -109,11 +82,10 @@ const Quotes = ({match}) => {
 
     return (
         <div>
-            <div className={'Categories Block'}>
-                <Categories/>
-            </div>
-
             <main className={'mainBlock'}>
+                <div className={'Categories Block'}>
+                    <Categories/>
+                </div>
                 <div className={'Quotes Block'}>
                     {quotesComponents}
                 </div>
