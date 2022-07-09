@@ -1,50 +1,82 @@
 import React, {useEffect, useState} from 'react';
 import axiosApi from "../../axiosApi";
 import Button from "../UI/Button/Button";
-import {Route, Switch, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import Spinner from "../UI/Spinner/Spinner";
 import Categories from "../Categories/Categories";
 import './Quotes.css'
 import Quote from "../Quote/Quote";
 
-const Quotes = () => {
+const Quotes = ({match}) => {
+    console.log(match.params.category);
     const history = useHistory();
     const [quotes, setQuotes] = useState(null);
     const [loading, setLoading] = useState(false);
     let quotesArr = [];
 
     useEffect(() => {
+
         const fetchData = async () => {
-            setLoading(true);
             try {
+                setLoading(true);
                 const response = await axiosApi('quotes.json');
-                console.log(response.data);
-                for (const key of Object.entries(response.data)) {
-                    quotesArr.push({
-                        id: key[0],
-                        author: key[1].author,
-                        text: key[1].text,
-                    });
+                if (response.data !== null) {
+                    for (const key of Object.entries(response.data)) {
+                        quotesArr.push({
+                            id: key[0],
+                            author: key[1].author,
+                            text: key[1].text,
+                            category: key[1].category,
+                        });
+                    }
+                    setQuotes(quotesArr);
                 }
-                setQuotes(quotesArr);
-                setLoading(false);
             } catch (e) {
                 console.error(e);
             }
+            setLoading(false);
         };
         fetchData().catch(e => console.log(e));
     }, []);
+
+    // useEffect(() => {
+    //
+    //     const fetchData = async () => {
+    //         try {
+    //             setLoading(true);
+    //             const response = await axiosApi(`quotes.json?orderBy="category"&equalTo="${match.params.category}"`);
+    //             if (response.data !== null) {
+    //                 for (const key of Object.entries(response.data)) {
+    //                     quotesArr.push({
+    //                         id: key[0],
+    //                         author: key[1].author,
+    //                         text: key[1].text,
+    //                         category: key[1].category,
+    //                     });
+    //                 }
+    //                 setQuotes(quotesArr);
+    //             }
+    //         } catch (e) {
+    //             console.error(e);
+    //         }
+    //         setLoading(false);
+    //     };
+    //     fetchData().catch(e => console.log(e));
+    //
+    // }, [match.params.category]);
 
     const toAddPage = () => {
         history.replace('/add');
     };
 
-    const onEdit = (e) => {
-
+    const onEdit = (id) => {
+        history.replace(`/quotes/${id}/edit`);
     };
 
-    const onDelete = (e) => {
-
+    const onDelete = async (id) => {
+        console.log(id);
+        await axiosApi.delete(`/quotes/${id}.json`);
+        setQuotes(quotes.filter(quote => quote.id !== id));
     };
 
     let quotesComponents = (

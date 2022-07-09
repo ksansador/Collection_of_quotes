@@ -12,8 +12,8 @@ function App() {
           <Switch>
             <Route path={'/'} exact  component={Quotes}/>
             <Route path={'/add'}   component={AddPage}/>
-            <Route path={'/quotes/:category'} component={Quotes}/>
-            <Route path={'/quotes/:category/edit'} exact component={AddPage}/>
+            <Route path={'/quotes/:id/edit'} exact component={AddPage}/>
+            <Route path={'/quotes/:category'} exact component={Quotes}/>
             <Route  render={() => <h1>Not found</h1>}/>
           </Switch>
   </div>
