@@ -1,0 +1,37 @@
+.Button{
+    padding: 5px 10px;
+    border: none;
+    border-radius: 10px;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: #fff;
+    margin-left: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    box-shadow: 3px 5px 1px rgba(000, 000, 000, 0.2);
+}
+
+.Button:active{
+    box-shadow: 3px 5px 6px rgba(000, 000, 000, 0.4);
+}
+
+.ReadMore,
+.Save{
+    color: #fff;
+    background: #424864;
+}
+.Save {
+    align-self: center;
+    padding: 8px 25px;
+}
+
+.NewPost{
+    margin: 40px auto;
+    display: block;
+    border: 1px solid #424864;
+}
+
+.Clicked {
+    background: #a6c06b;
+}
