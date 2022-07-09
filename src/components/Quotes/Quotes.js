@@ -39,31 +39,34 @@ const Quotes = ({match}) => {
         fetchData().catch(e => console.log(e));
     }, []);
 
-    // useEffect(() => {
-    //
-    //     const fetchData = async () => {
-    //         try {
-    //             setLoading(true);
-    //             const response = await axiosApi(`quotes.json?orderBy="category"&equalTo="${match.params.category}"`);
-    //             if (response.data !== null) {
-    //                 for (const key of Object.entries(response.data)) {
-    //                     quotesArr.push({
-    //                         id: key[0],
-    //                         author: key[1].author,
-    //                         text: key[1].text,
-    //                         category: key[1].category,
-    //                     });
-    //                 }
-    //                 setQuotes(quotesArr);
-    //             }
-    //         } catch (e) {
-    //             console.error(e);
-    //         }
-    //         setLoading(false);
-    //     };
-    //     fetchData().catch(e => console.log(e));
-    //
-    // }, [match.params.category]);
+    useEffect(() => {
+
+        const fetchData = async () => {
+            try {
+                setLoading(true);
+                if ( match.params.category !== undefined) {
+                    const response = await axiosApi(`quotes.json?orderBy="category"&equalTo="${match.params.category}"`);
+                    console.log(response.data);
+
+                    for (const key of Object.entries(response.data)) {
+                        quotesArr.push({
+                            id: key[0],
+                            author: key[1].author,
+                            text: key[1].text,
+                            category: key[1].category,
+                        });
+                    }
+                    setQuotes(quotesArr);
+                }
+
+            } catch (e) {
+                console.error(e);
+            }
+            setLoading(false);
+        };
+        fetchData().catch(e => console.log(e));
+
+    }, [match.params.category]);
 
     const toAddPage = () => {
         history.replace('/add');
